@@ -41,7 +41,7 @@ class QTreeView;
 
 #include "ui_dbparams.h"
 #include <kdialog.h>
-namespace ThreadWeaver {class Job;};
+namespace ThreadWeaver {class Job;}
     
 namespace TM {
 /**
