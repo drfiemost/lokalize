@@ -192,7 +192,7 @@ void EditorTab::find()
             sel=selectionInSource();
         if (_find&&_find->options()&IGNOREACCELS)
             sel.remove('&');
-            EntryFindDialog::instance()->setPattern(sel);
+        EntryFindDialog::instance()->setPattern(sel);
     }
 
     if ( EntryFindDialog::instance()->exec() != QDialog::Accepted )

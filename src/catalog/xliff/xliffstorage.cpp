@@ -451,10 +451,14 @@ static QString doContent(QDomElement elem, int startingPos, ContentEditingData* 
             if (InlineTag::isPaired(i))
             {
                 QString recursiveContent=doContent(el,startingPos,data);
-                if (!recursiveContent.isEmpty())
-                    result += recursiveContent; startingPos+=recursiveContent.size();
-                if (data)
-                    {result += QChar(TAGRANGE_IMAGE_SYMBOL); ++startingPos;}
+                if (!recursiveContent.isEmpty()) {
+                    result += recursiveContent;
+                    startingPos+=recursiveContent.size();
+                }
+                if (data) {
+                    result += QChar(TAGRANGE_IMAGE_SYMBOL);
+                    ++startingPos;
+                }
             }
 
             if (data&&data->actionType==ContentEditingData::Get)
