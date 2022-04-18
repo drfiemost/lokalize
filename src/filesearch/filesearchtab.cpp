@@ -337,7 +337,7 @@ FileSearchModel::FileSearchModel(QObject* parent)
 {
 }
 
-QVariant FileSearchModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant FileSearchModel::headerData(int section, Qt::Orientation, int role) const
 {
     if (role!=Qt::DisplayRole)
         return QVariant();
