@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 project(lokalize)
+
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # search packages used by KDE
 find_package(KDE4 REQUIRED)
@@ -22,4 +26,3 @@ add_subdirectory(doc)
 add_subdirectory(src)
 add_subdirectory(scripts)
 add_subdirectory(icons)
-#add_subdirectory(strigi-analyzer)
