@@ -239,7 +239,7 @@ void EditorView::gotoEntry(DocPosition pos, int selection)
         }
         else if (KDE_ISUNLIKELY( targetString.startsWith(TAGRANGE_IMAGE_SYMBOL) ))
         {
-            int offset=targetString.indexOf(QRegExp("[^"+TAGRANGE_IMAGE_SYMBOL+']'));
+            int offset=targetString.indexOf(QRegExp(QLatin1Literal("[^") + QChar(TAGRANGE_IMAGE_SYMBOL) + ']'));
             if ( offset!=-1 )
                 t.movePosition(QTextCursor::NextCharacter,QTextCursor::MoveAnchor,offset+1);
         }
