@@ -58,6 +58,8 @@ struct Phase
         , tool(rhs.tool)
     {}
 
+    Phase& operator=(const Phase&) = default;
+
     bool operator<(const Phase& other) const
     {
         return date<other.date;
