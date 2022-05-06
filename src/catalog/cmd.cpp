@@ -371,7 +371,7 @@ bool removeTargetSubstring(Catalog* catalog, DocPosition pos, int delStart, int 
 
     bool doTags=catalog->capabilities()&Tags;
     QMap<int,int> tagPlaces;
-    if (target.isEmpty() || doTags && !fillTagPlaces(tagPlaces,targetWithTags,delStart,delLen))
+    if (target.isEmpty() || (doTags && !fillTagPlaces(tagPlaces,targetWithTags,delStart,delLen)))
     {
         kWarning()<<"error removing text"<<target;
         return false;
