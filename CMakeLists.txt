@@ -27,7 +27,7 @@ set_package_properties(
     PURPOSE     "Required to build Lokalize.")
 
 include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
-add_subdirectory(doc)
+macro_optional_add_subdirectory(doc)
 add_subdirectory(src)
 add_subdirectory(scripts)
 add_subdirectory(icons)
