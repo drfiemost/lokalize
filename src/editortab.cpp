@@ -796,8 +796,12 @@ bool EditorTab::fileOpen(KUrl url, KUrl baseUrl, bool silent)
                                                 KStandardGuiItem::save(),KStandardGuiItem::discard())
                )
         {
-        case KMessageBox::Yes: if (!saveFile()) return false;
-        case KMessageBox::Cancel:               return false;
+        case KMessageBox::Yes:
+            if (!saveFile())
+                return false;
+            break;
+        case KMessageBox::Cancel:
+            return false;
         }
     }
     if (baseUrl.isEmpty())

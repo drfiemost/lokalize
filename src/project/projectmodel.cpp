@@ -664,6 +664,7 @@ QVariant ProjectModel::data(const QModelIndex& index, int role) const
                     return m_poIcon; 
                 else if (node->potRowNumber != -1)
                     return m_potIcon;
+                [[fallthrough]];
             default:
                 return QVariant();
         }
