@@ -18,7 +18,7 @@ include(MacroLibrary)
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
-find_package(HUNSPELL)
+find_package(HUNSPELL 1.5)
 set_package_properties(
     HUNSPELL PROPERTIES
     DESCRIPTION "Library used for stemming"
