@@ -536,7 +536,7 @@ bool TermsListModel::setData(const QModelIndex& index, const QVariant& value, in
 }
 
 
-bool TermsListModel::removeRows(int row, int count, const QModelIndex& parent)
+bool TermsListModel::removeRows(int row, [[maybe_unused]] int count, const QModelIndex& parent)
 {
     if (row==rowCount()-1)
         return false;// cannot delete non-existing item
