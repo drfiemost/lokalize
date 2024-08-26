@@ -46,6 +46,8 @@
 
 #include <iostream>
 
+#include <algorithm>
+
 #include <math.h>
 using namespace TM;
 
@@ -1453,7 +1455,7 @@ void SelectJob::run ()
     doSplit(cleanSource,words,rxClean1,c.accel);
     if (KDE_ISUNLIKELY( words.isEmpty() ))
         return;
-    qSort(words);//to speed up if some words occur multiple times
+    std::sort(words.begin(), words.end());//to speed up if some words occur multiple times
 
     bool isShort=words.size()<20;
 
@@ -1461,7 +1463,7 @@ void SelectJob::run ()
         doSelect(db,words,!isShort);
 
     //kWarning(TM_AREA) <<"SelectJob: done "<<a.elapsed()<<m_entries.size();
-    qSort(m_entries.begin(), m_entries.end(), qGreater<TMEntry>());
+    std::sort(m_entries.begin(), m_entries.end(), qGreater<TMEntry>());
     int limit=qMin(Settings::suggCount(),m_entries.size());
     int i=m_entries.size();
     while(--i>=limit)

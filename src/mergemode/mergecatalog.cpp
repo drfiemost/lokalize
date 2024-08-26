@@ -28,8 +28,8 @@
 #include <kdebug.h>
 #include <klocalizedstring.h>
 #include <QMultiHash>
-#include <QtAlgorithms>
 
+#include <algorithm>
 
 
 MergeCatalog::MergeCatalog(QObject* parent, Catalog* baseCatalog, bool saveChanges)
@@ -198,7 +198,7 @@ int MergeCatalog::loadFromUrl(const KUrl& url)
             while(--k>=0)
                 scores<<calcMatchItem(i,DocPosition( entries.at(k) ));
 
-            qSort(scores.begin(), scores.end(), qGreater<MatchItem>());
+            std::sort(scores.begin(), scores.end(), qGreater<MatchItem>());
 
             m_map[i.entry]=scores.first().mergeEntry;
             backMap.insert(scores.first().mergeEntry, i.entry);
@@ -224,7 +224,7 @@ int MergeCatalog::loadFromUrl(const KUrl& url)
         foreach(int value, basePositions)
             scores<<calcMatchItem(DocPosition(value), mergePosition);
 
-        qSort(scores.begin(), scores.end(), qGreater<MatchItem>());
+        std::sort(scores.begin(), scores.end(), qGreater<MatchItem>());
         int i=scores.size();
         while(--i>0)
         {

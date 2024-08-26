@@ -37,6 +37,8 @@
 #include <QBuffer>
 #include <QApplication>
 
+#include <algorithm>
+
 using namespace GlossaryNS;
 
 static const QString defaultLang="en_US";
@@ -311,7 +313,7 @@ QByteArray Glossary::generateNewId()
 
     if (!busyIdNumbers.isEmpty())
     {
-        qSort(busyIdNumbers);
+        std::sort(busyIdNumbers.begin(), busyIdNumbers.end());
         while (busyIdNumbers.contains(idNumber))
             ++idNumber;
     }

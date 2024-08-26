@@ -44,6 +44,8 @@
 #include <QStringListModel>
 #include <QShortcut>
 
+#include <algorithm>
+
 using namespace GlossaryNS;
 
 //BEGIN GlossaryTreeView
@@ -307,7 +309,7 @@ GlossaryWindow::GlossaryWindow(QWidget *parent)
     //m_subjectField->addItems(Project::instance()->glossary()->subjectFields());
     //m_subjectField->setModel(new SubjectFieldModel(this));
     QStringList subjectFields=Project::instance()->glossary()->subjectFields();
-    qSort(subjectFields);
+    std::sort(subjectFields.begin(), subjectFields.end());
     QStringListModel* subjectFieldsModel=new QStringListModel(this);
     subjectFieldsModel->setStringList(subjectFields);
     m_subjectField->setModel(subjectFieldsModel);

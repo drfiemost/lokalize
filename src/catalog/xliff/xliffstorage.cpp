@@ -40,6 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kdatetime.h>
 #include <QXmlSimpleReader>
 
+#include <algorithm>
+
 static const QString noyes[]={"no","yes"};
 static const QString bintargettarget[]={"bin-target","target"};
 static const QString binsourcesource[]={"bin-source","source"};
@@ -790,7 +792,7 @@ QVector<Note> XliffStorage::notes(const DocPosition& pos) const
         result.append(note);
         elem=elem.nextSiblingElement("note");
     }
-    qSort(result);
+    std::sort(result.begin(), result.end());
     return result.toVector();
 }
 

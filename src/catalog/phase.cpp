@@ -29,6 +29,8 @@
 
 #include <QSet>
 
+#include <algorithm>
+
 const char* const* processes()
 {
     static const char* const processes[]={"translation","review","approval"};
@@ -65,7 +67,7 @@ bool initPhaseForCatalog(Catalog* catalog, Phase& phase, int options)
 
     QSet<QString> names;
     QList<Phase> phases=catalog->allPhases();
-    qSort(phases.begin(), phases.end(), qGreater<Phase>());
+    std::sort(phases.begin(), phases.end(), qGreater<Phase>());
     foreach (const Phase& p, phases)
     {
         if (!(options&ForceAdd) && p.contact==phase.contact && p.process==phase.process)
