@@ -163,7 +163,7 @@ ConversionStatus GettextImportPlugin::load(QIODevice* device)
    // now parse the rest of the file
    uint counter=0;
    QList<int> errorIndex;
-   bool recoveredError=false;
+   //bool recoveredError=false;
    bool docbookFile=false;
 
    ExtraDataSaver _extraDataSaver;
@@ -198,7 +198,7 @@ ConversionStatus GettextImportPlugin::load(QIODevice* device)
       else if(KDE_ISUNLIKELY( success==RECOVERED_PARSE_ERROR ))
       {
          kDebug() << "Recovered parse error in entry: " << counter;
-         recoveredError=true;
+         //recoveredError=true;
          errorIndex.append(counter);
 
             CatalogItem tempCatItem;
@@ -334,7 +334,7 @@ ConversionStatus GettextImportPlugin::readEntryRaw(QTextStream& stream)
    _trailingNewLines=0;
    bool error=false;
    bool recoverableError=false;
-   bool seenMsgctxt=false;
+   //bool seenMsgctxt=false;
    _msgstr.clear();
    _msgstr.append(QString());
    _msgid.clear();
@@ -414,7 +414,7 @@ ConversionStatus GettextImportPlugin::readEntryRaw(QTextStream& stream)
                line.remove(_rxMsgLineRemEndQuote);
                _msgctxt=line;
                _msgctxtPresent=true;
-               seenMsgctxt=true;
+               //seenMsgctxt=true;
            }
            else if( line.contains( _rxMsgId ) )
            {
@@ -472,7 +472,7 @@ ConversionStatus GettextImportPlugin::readEntryRaw(QTextStream& stream)
                line.remove(_rxMsgLineRemEndQuote);
                _msgctxt=line;
                _msgctxtPresent=true;
-               seenMsgctxt=true;
+               //seenMsgctxt=true;
             }
             else if( line.contains( _rxMsgId ) )
             {
