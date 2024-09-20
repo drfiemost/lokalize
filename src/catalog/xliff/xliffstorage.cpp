@@ -167,6 +167,7 @@ int XliffStorage::load(QIODevice* device)
 
 bool XliffStorage::save(QIODevice* device, bool belongsToProject)
 {
+    Q_UNUSED(belongsToProject)
     QTextStream stream(device);
     m_doc.save(stream,2);
     return true;
