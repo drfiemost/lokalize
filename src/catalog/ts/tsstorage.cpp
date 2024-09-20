@@ -98,7 +98,7 @@ int TsStorage::load(QIODevice* device)
     //we create any form-entries additionally needed
 
     entries=m_doc.elementsByTagName("message");
-    int size=entries.size();
+    //int size=entries.size();
 
     kWarning()<<chrono.elapsed();
     return 0;
@@ -106,6 +106,7 @@ int TsStorage::load(QIODevice* device)
 
 bool TsStorage::save(QIODevice* device, bool belongsToProject)
 {
+    Q_UNUSED(belongsToProject)
     QTextStream stream(device);
     m_doc.save(stream,4);
     return true;
@@ -501,11 +502,12 @@ bool TsStorage::isEmpty(const DocPosition& pos) const
 
 bool TsStorage::isEquivTrans(const DocPosition& pos) const
 {
-    return true;//targetForPos(pos.entry).attribute("equiv-trans")!="no";
+    Q_UNUSED(pos) return true;//targetForPos(pos.entry).attribute("equiv-trans")!="no";
 }
 
 void TsStorage::setEquivTrans(const DocPosition& pos, bool equivTrans)
 {
+    Q_UNUSED(pos) Q_UNUSED(equivTrans)
     //targetForPos(pos.entry).setAttribute("equiv-trans",noyes[equivTrans]);
 }
 
