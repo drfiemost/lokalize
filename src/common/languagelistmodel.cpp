@@ -103,7 +103,7 @@ QVariant LanguageListModel::data(const QModelIndex& index, int role) const
     }
     else if (role==Qt::DisplayRole)
     {
-        const QString& code=stringList().at(index.row());
+        QString code=stringList().at(index.row());
         if (code.isEmpty()) return code;
         //kDebug()<<"languageCodeToName"<<code;
         return QVariant::fromValue<QString>(KGlobal::locale()->languageCodeToName(code)%" ("%code%")");
