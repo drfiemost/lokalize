@@ -410,7 +410,7 @@ void TMView::slotSuggestionsCame(ThreadWeaver::Job* j)
     if (job.m_dbName!=projectID)
     {
         job.m_entries+=m_entries;
-        std::sort(job.m_entries.begin(), job.m_entries.end(), qGreater<TMEntry>());
+        std::sort(job.m_entries.begin(), job.m_entries.end(), std::greater<TMEntry>());
         int limit=qMin(Settings::suggCount(),job.m_entries.size());
         int i=job.m_entries.size();
         while(--i>=limit)

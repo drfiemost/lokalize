@@ -1463,7 +1463,7 @@ void SelectJob::run ()
         doSelect(db,words,!isShort);
 
     //kWarning(TM_AREA) <<"SelectJob: done "<<a.elapsed()<<m_entries.size();
-    std::sort(m_entries.begin(), m_entries.end(), qGreater<TMEntry>());
+    std::sort(m_entries.begin(), m_entries.end(), std::greater<TMEntry>());
     int limit=qMin(Settings::suggCount(),m_entries.size());
     int i=m_entries.size();
     while(--i>=limit)

@@ -198,7 +198,7 @@ int MergeCatalog::loadFromUrl(const KUrl& url)
             while(--k>=0)
                 scores<<calcMatchItem(i,DocPosition( entries.at(k) ));
 
-            std::sort(scores.begin(), scores.end(), qGreater<MatchItem>());
+            std::sort(scores.begin(), scores.end(), std::greater<MatchItem>());
 
             m_map[i.entry]=scores.first().mergeEntry;
             backMap.insert(scores.first().mergeEntry, i.entry);
@@ -224,7 +224,7 @@ int MergeCatalog::loadFromUrl(const KUrl& url)
         foreach(int value, basePositions)
             scores<<calcMatchItem(DocPosition(value), mergePosition);
 
-        std::sort(scores.begin(), scores.end(), qGreater<MatchItem>());
+        std::sort(scores.begin(), scores.end(), std::greater<MatchItem>());
         int i=scores.size();
         while(--i>0)
         {

@@ -66,7 +66,16 @@ struct TMEntry
         }
         return score<other.score;
     }
-    
+    bool operator>(const TMEntry& other) const
+    {
+        if (score == other.score) {
+            if (hits == other.hits)
+                return date > other.date;
+            return hits > other.hits;
+        }
+        return score > other.score;
+    }
+
     TMEntry():hits(0){}
 };
 
