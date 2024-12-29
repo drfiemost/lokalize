@@ -325,7 +325,7 @@ static QString doContent(QDomElement elem, int startingPos, ContentEditingData* 
                     {
                         //qWarning()<<"isPaired";
                         int len=tag.end-tag.start-1;//-image symbol
-                        int localLen=qMin(len,mid.size());
+                        int localLen=std::min(len,mid.size());
                         if (localLen)//appending text
                         {
                             //qWarning()<<"localLen. appending"<<localLen<<mid.left(localLen);

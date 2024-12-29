@@ -176,7 +176,7 @@ static void calcOffsetWithAccels(const QString& data, int& offset, int& length)
         if (KDE_ISUNLIKELY( data.at(i)=='&' ))
         {
             ++length;
-            limit=qMin(data.size(),offset+length);//just safety
+            limit=std::min(data.size(),offset+length);//just safety
         }
 }
 

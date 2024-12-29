@@ -209,7 +209,7 @@ bool GlossaryModel::canFetchMore([[maybe_unused]] const QModelIndex& parent) con
 
 void GlossaryModel::fetchMore(const QModelIndex& parent)
 {
-    int newVisibleCount=qMin(m_visibleCount+FETCH_SIZE,m_glossary->size());
+    int newVisibleCount=std::min(m_visibleCount+FETCH_SIZE,m_glossary->size());
     beginInsertRows(parent, m_visibleCount, newVisibleCount-1);
     m_visibleCount=newVisibleCount;
     endInsertRows();

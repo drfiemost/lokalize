@@ -327,8 +327,8 @@ void ProjectTab::updateStatusBar(int fuzzy, int translated, int untranslated, bo
 
     if (m_progressBar->value() != total && m_legacyUnitsCount > 0)
         m_progressBar->setValue(total);
-    if (m_progressBar->maximum() < qMax(total,m_legacyUnitsCount))
-        m_progressBar->setMaximum(qMax(total,m_legacyUnitsCount));
+    if (m_progressBar->maximum() < std::max(total,m_legacyUnitsCount))
+        m_progressBar->setMaximum(std::max(total,m_legacyUnitsCount));
     m_progressBar->setVisible(!done);
     if (done)
         m_legacyUnitsCount = total;

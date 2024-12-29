@@ -259,7 +259,7 @@ int MergeView::pluralFormsAvailableForward()
     if(KDE_ISLIKELY( m_pos.entry==-1 || !m_mergeCatalog->isPlural(m_pos.entry) ))
         return -1;
 
-    int formLimit=qMin(m_baseCatalog->numberOfPluralForms(),m_mergeCatalog->numberOfPluralForms());//just sanity check
+    int formLimit=std::min(m_baseCatalog->numberOfPluralForms(),m_mergeCatalog->numberOfPluralForms());//just sanity check
     DocPosition pos=m_pos;
     while (++(pos.form)<formLimit)
     {
@@ -301,7 +301,7 @@ void MergeView::gotoPrevChanged()
         return;
 
     if (KDE_ISUNLIKELY( m_mergeCatalog->isPlural(pos.entry)&&form==-1 ))
-        pos.form=qMin(m_baseCatalog->numberOfPluralForms(),m_mergeCatalog->numberOfPluralForms())-1;
+        pos.form=std::min(m_baseCatalog->numberOfPluralForms(),m_mergeCatalog->numberOfPluralForms())-1;
 
     emit gotoEntry(pos,0);
 }

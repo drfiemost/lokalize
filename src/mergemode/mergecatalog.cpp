@@ -282,8 +282,8 @@ void MergeCatalog::copyToBaseCatalog(DocPosition& pos)
     if (isPlural(pos.entry))
     {
         DocPosition p=pos;
-        p.form=qMin(m_baseCatalog->numberOfPluralForms(),numberOfPluralForms());//just sanity check
-        p.form=qMax((int)p.form,1);//just sanity check
+        p.form=std::min(m_baseCatalog->numberOfPluralForms(),numberOfPluralForms());//just sanity check
+        p.form=std::max((int)p.form,1);//just sanity check
         while ((--(p.form))>=0 && remove)
             remove=m_baseCatalog->msgstr(p)==msgstr(p);
     }

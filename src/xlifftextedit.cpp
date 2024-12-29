@@ -88,7 +88,7 @@ public:
 QSize MyCompletionBox::sizeHint() const
 {
     int h = count()?(sizeHintForRow(0)):0;
-    h=qMin(count()*h,10*h) + 2*frameWidth();
+    h=std::min(count()*h,10*h) + 2*frameWidth();
     int w = sizeHintForColumn(0) + verticalScrollBar()->width() + 2*frameWidth();
     return QSize(w, h);
 }
@@ -276,7 +276,7 @@ CatalogString TranslationUnitTextEdit::showPos(DocPosition docPosition, const Ca
         t.setPosition(anchor,QTextCursor::MoveAnchor);
         int length=pos-anchor;
         if (length)
-            t.movePosition(length<0?QTextCursor::PreviousCharacter:QTextCursor::NextCharacter,QTextCursor::KeepAnchor,qAbs(length));
+            t.movePosition(length<0?QTextCursor::PreviousCharacter:QTextCursor::NextCharacter,QTextCursor::KeepAnchor,std::abs(length));
     }
     setTextCursor(t);
     //kWarning()<<"set?"<<textCursor().anchor()<<textCursor().position();
@@ -330,13 +330,13 @@ int AlternativeSearchFunctor::operator()(const QString& str, int startingPos)
     int diffStartPos=str.indexOf("{KBABEL", startingPos);
     int diffEndPos=str.indexOf("{/KBABEL", startingPos);
 
-    int diffPos=qMin(diffStartPos,diffEndPos);
+    int diffPos=std::min(diffStartPos,diffEndPos);
     if (diffPos==-1)
-        diffPos=qMax(diffStartPos,diffEndPos);
+        diffPos=std::max(diffStartPos,diffEndPos);
 
-    int result=qMin(tagPos,diffPos);
+    int result=std::min(tagPos,diffPos);
     if (result==-1)
-        result=qMax(tagPos,diffPos);
+        result=std::max(tagPos,diffPos);
     return result;
 }
 #endif
@@ -617,8 +617,8 @@ QMimeData* TranslationUnitTextEdit::createMimeDataFromSelection() const
     CatalogString catalogString=m_catalog->catalogString(m_currentPos);
 
     QTextCursor cursor=textCursor();
-    int start=qMin(cursor.anchor(),cursor.position());
-    int end=qMax(cursor.anchor(),cursor.position());
+    int start=std::min(cursor.anchor(),cursor.position());
+    int end=std::max(cursor.anchor(),cursor.position());
 
     QMap<int,int> tagPlaces;
     if (fillTagPlaces(tagPlaces,catalogString,start,end-start))
@@ -673,8 +673,8 @@ void TranslationUnitTextEdit::insertFromMimeData(const QMimeData* source)
         QTextCursor cursor=textCursor();
         if (cursor.hasSelection())
         {
-            start=qMin(cursor.anchor(),cursor.position());
-            int end=qMax(cursor.anchor(),cursor.position());
+            start=std::min(cursor.anchor(),cursor.position());
+            int end=std::max(cursor.anchor(),cursor.position());
             removeTargetSubstring(start,end-start);
             cursor.setPosition(start);
             setTextCursor(cursor);
@@ -941,8 +941,8 @@ void TranslationUnitTextEdit::emitCursorPositionChanged()
 void TranslationUnitTextEdit::insertTag(InlineTag tag)
 {
     QTextCursor cursor=textCursor();
-    tag.start=qMin(cursor.anchor(),cursor.position());
-    tag.end=qMax(cursor.anchor(),cursor.position())+tag.isPaired();
+    tag.start=std::min(cursor.anchor(),cursor.position());
+    tag.end=std::max(cursor.anchor(),cursor.position())+tag.isPaired();
     kWarning()<<(m_part==DocPosition::Source)<<tag.start<<tag.end;
     m_catalog->push(new InsTagCmd(m_catalog,currentPos(),tag));
     showPos(currentPos(),CatalogString(),/*keepCursor*/true);

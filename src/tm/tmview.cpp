@@ -411,7 +411,7 @@ void TMView::slotSuggestionsCame(ThreadWeaver::Job* j)
     {
         job.m_entries+=m_entries;
         std::sort(job.m_entries.begin(), job.m_entries.end(), std::greater<TMEntry>());
-        int limit=qMin(Settings::suggCount(),job.m_entries.size());
+        int limit=std::min(Settings::suggCount(),job.m_entries.size());
         int i=job.m_entries.size();
         while(--i>=limit)
             job.m_entries.removeLast();
@@ -634,9 +634,9 @@ static int nextPlacableIn(const QString& old, int start, QString& cap)
         abbrPos+=rxAbbr.matchedLength();
     }
 
-    int pos=qMin(numPos,abbrPos);
+    int pos=std::min(numPos,abbrPos);
     if (pos==-1)
-        pos=qMax(numPos,abbrPos);
+        pos=std::max(numPos,abbrPos);
 
 //     if (pos==numPos)
 //         cap=rxNum.cap(0);

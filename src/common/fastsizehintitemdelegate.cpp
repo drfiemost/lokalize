@@ -104,7 +104,7 @@ void FastSizeHintItemDelegate::paint(QPainter* painter, const QStyleOptionViewIt
     painter->setPen(bgBrush.color());
     QPoint p1=option.rect.topRight();
     QPoint p2=option.rect.bottomRight();
-    int limit=qMin(8, rectWidth-2);
+    int limit=std::min(8, rectWidth-2);
     int i=limit;
     while(--i>0)
     {

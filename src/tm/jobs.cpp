@@ -1432,7 +1432,7 @@ bool SelectJob::doSelect(QSqlDatabase& db,
         queryFetch.clear();
         if (clit==concordanceLevelToIds.constBegin())
             break;
-        if (seen85) limit=qMin(limit, 100); //be more restrictive for the next concordance levels
+        if (seen85) limit=std::min(limit, 100); //be more restrictive for the next concordance levels
     }
     return seen85;
 }
@@ -1464,7 +1464,7 @@ void SelectJob::run ()
 
     //kWarning(TM_AREA) <<"SelectJob: done "<<a.elapsed()<<m_entries.size();
     std::sort(m_entries.begin(), m_entries.end(), std::greater<TMEntry>());
-    int limit=qMin(Settings::suggCount(),m_entries.size());
+    int limit=std::min(Settings::suggCount(),m_entries.size());
     int i=m_entries.size();
     while(--i>=limit)
         m_entries.removeLast();

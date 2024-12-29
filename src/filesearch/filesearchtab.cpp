@@ -623,7 +623,7 @@ void FileSearchTab::performSearch()
     for(int i=0; i<files.size();i+=100)
     {
         QStringList batch;
-        int lim=qMin(files.size(), i+100);
+        int lim=std::min(files.size(), i+100);
         for(int j=i; j<lim;j++)
             batch.append(files.at(j));
 
@@ -652,7 +652,7 @@ void FileSearchTab::massReplace(const QRegExp &what, const QString& with)
 
     for (int i=0;i<searchResults.count();i+=BATCH_SIZE)
     {
-        int last=qMin(i+BATCH_SIZE, searchResults.count()-1);
+        int last=std::min(i+BATCH_SIZE, searchResults.count()-1);
         QString filepath=searchResults.at(last).filepath;
         while (last+1<searchResults.count() && filepath==searchResults.at(last+1).filepath)
             ++last;
